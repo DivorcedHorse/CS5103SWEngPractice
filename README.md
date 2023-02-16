@@ -17,3 +17,14 @@
     - GitHub will be used for keeping track of my code and changes related to it.
         - Unit tests/files will also be tracked here.
     - A separate document for specifications (requirements engineering) will be created.  This document will contain the textual-based specifications as well as test cases.  
+
+5. ### **Project Execution:**
+    - To execute the **String and Words** application, navigate to the *src* folder.  Here two files will exists:
+        1. **main.py** - The source code for the **String and Words** implementation.
+        2. **exec.sh** - The executable file that will invoke **main.py**.  This script will only accept one argument, the file wanting to be executed on.
+
+        To execute, please run the following command down below: <br>
+        ```
+        ./exec.sh <filename>
+        ```
+        Where *\<filename>* is the path of the file wanting to be looked at. 
