@@ -51,19 +51,16 @@ def readFile(file):
                 
     # File being read did not work, give simple ERROR message
     except IOError:
-        print("Unable to Open Given Input File.  Terminating Process.")
-        exit()
-
+        raise IOError("ERROR: Unable to Open Given Input File.  Terminating Process.")
+    
 # checkArguments
 #   Ensures that the proper number of arguments is provided to the 
 #   String and Words application.
 def checkArguments(arguments):
     if arguments == []:
-        print("ERROR : Please Provide an Input File.")
-        exit(0)
+        exit("ERROR : Please Provide an Input File.")
     elif len(arguments) > 1:
-        print("ERROR : Please Provide Only a Single Input File.")
-        exit(0)
+        exit("ERROR : Please Provide Only a Single Input File.")
     elif len(arguments) == 1:
         return
 
@@ -76,4 +73,7 @@ def main():
     
 # Invoke Main Function
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(e)
