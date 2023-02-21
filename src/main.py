@@ -51,11 +51,25 @@ def readFile(file):
                 
     # File being read did not work, give simple ERROR message
     except IOError:
-        print("Unable to open given input file.  Terminating Process.")
+        print("Unable to Open Given Input File.  Terminating Process.")
         exit()
+
+# checkArguments
+#   Ensures that the proper number of arguments is provided to the 
+#   String and Words application.
+def checkArguments(arguments):
+    if arguments == []:
+        print("ERROR : Please Provide an Input File.")
+        exit(0)
+    elif len(arguments) > 1:
+        print("ERROR : Please Provide Only a Single Input File.")
+        exit(0)
+    elif len(arguments) == 1:
+        return
 
 # Simply read filename provided and call readFile function
 def main():
+    checkArguments(sys.argv[1:])
     file = sys.argv[1]
     readFile(file)
     printWords()
