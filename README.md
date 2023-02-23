@@ -28,3 +28,20 @@
         ./exec.sh <filename>
         ```
         Where *\<filename>* is the path of the file wanting to be looked at. 
+
+6. ### **Test Cases**:
+    - Test cases can also be found in the *src* directory to validate the requirements of the 
+        **String and Words** application.
+
+    - Test cases can be ran by navigating to the *src* folder, and running the command seen down below: <br>
+
+        - To run a single test file:
+            ```
+            python3 test_<testFileName>.py
+            ```
+        - To run all test files:
+            ```
+            python3 -m unittest
+            ```
+    
+

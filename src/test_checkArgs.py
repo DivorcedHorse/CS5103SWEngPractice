@@ -1,3 +1,7 @@
+# test_checkArgs.py
+# Purpose:
+#   Ensures that only a single file will allow application to run.
+
 import unittest
 from main import checkArguments
 
@@ -16,14 +20,14 @@ class TestArguments(unittest.TestCase):
     # are provided.
     def test_checkManyInputFiles(self):
         with self.assertRaises(SystemExit) as error:
-            checkArguments(["OneFile.txt", "twoFile.txt"])
+            checkArguments(["OneFile.txt", "twoFile.txt", "threeFile.txt"])
         self.assertEqual(str(error.exception), "ERROR : Please Provide Only a Single Input File.")
         self.assertNotEqual(str(error.exception), "ERROR : Please Provide an Input File.")
         self.assertNotEqual(len(str(error.exception)), 0)
 
     # Check to see if only one file is provided
     # it returns None (No error)
-    def test_checkValidSingleFile(self):
+    def test_checkValidSingleEmptyFile(self):
         self.assertEqual(checkArguments(["valid.txt"]), None)
 
 if __name__ == '__main__':

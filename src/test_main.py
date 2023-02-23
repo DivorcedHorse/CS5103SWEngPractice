@@ -1,5 +1,8 @@
+# test_main.py
+# Purpose:
+#   Ensures that counting and prints words peform as expected.
+
 import unittest
-from unittest.mock import patch
 import main
 import io
 import sys
