@@ -1,48 +1,21 @@
-# test_main.py
+# test_printWords.py
 # Purpose:
-#   Ensures that counting and prints words peform as expected.
+#   Ensures that given a count of words, properly
+#   prints out the contents onto the terminal.
 
 import unittest
 import main
 import io
 import sys
 
-class TestStringandWords(unittest.TestCase):
+class TestPrintWords(unittest.TestCase):
     # clear the global FOUNDWORDS so tests do not
     # interfere with one another
     def setUp(self):
         main.FOUNDWORDS = {}
         
-    # Given a bad input file, raise error
-    def test_invalidInputFile(self):
-        with self.assertRaises(IOError) as error:
-            main.readFile("FILEDOESNOTEXIST.txt")
-        self.assertEqual(str(error.exception), "ERROR: Unable to Open Given Input File.  Terminating Process.")
-        
-    # Given an empty array, check to see
-    # if no words are counted.
-    def test_countEmptyWords(self):
-        words = []
-        main.countUniqueWords(words)
-        self.assertDictEqual(main.FOUNDWORDS, {})
-        self.assertNotEqual(main.FOUNDWORDS, {"word":1})
-
-    # Given an array of the same word, 
-    # check to see if count works as intended
-    def test_countIdenticalWords(self):
-        words = ["word", "word", "word"]
-        main.countUniqueWords(words)
-        self.assertDictEqual(main.FOUNDWORDS, {'word': 3})
-        self.assertNotEqual(main.FOUNDWORDS, {'word': 4})
-        
-    # Given array of different words, 
-    # check to see if counted properly
-    def test_countUniqueWords(self):
-        words = ["word", "anotherWord", "word", "anotherWord"]
-        main.countUniqueWords(words)
-        self.assertDictEqual(main.FOUNDWORDS, {'anotherWord': 2, 'word': 2})
-        self.assertNotEqual(main.FOUNDWORDS, {'word': 4})
-        self.assertNotEqual(main.FOUNDWORDS, {'anotherWord': 2, 'word': 3})
+    def tearDown(self):
+        main.FOUNDWORDS = {}
         
      # Given an empty dictionary, prints nothing
     def test_validatePrintNone(self):

@@ -6,6 +6,7 @@
 
 # Necessary imports
 import sys
+import re
 
 # GLOBALS
 FOUNDWORDS = {}     # Stores unique words found
@@ -16,7 +17,25 @@ FOUNDWORDS = {}     # Stores unique words found
 def printWords():
     for word in FOUNDWORDS.keys():
         print("\"" + word + "\"" + " has a word count of " + str(FOUNDWORDS[word]))
-
+        
+# validateWord
+#   Given a word, checks to see if that word 
+#   will count as a valid word or not. 
+def validateWord(word):
+    # Check to see if valid word if only containing letters
+    for index, char in enumerate(word):
+        # If a char is not in a-zA-Z, check to see if single operator
+        # If at end of the string, then count as word but remove operator.
+        if not char.isalpha():
+            if len(word) == 1:
+                return False
+            # Valid operator at the end, return True
+            if (index == len(word)-1) and re.match(r"[!?\.,;]", char):
+                return True
+            return False
+    # Valid word, return True
+    return True
+    
 # countUniqueWords
 #   Given a list of words, iterates through them
 #   and keeps counts of new/old words 
@@ -24,7 +43,16 @@ def countUniqueWords(words):
     global FOUNDWORDS
     
     # Iterate through all words in list
-    for word in words:
+    for word in words:        
+        
+        # invoke validateWord to see if a good word or not
+        if not validateWord(word):
+            continue
+        else:
+            # if valid word with valid operator at end, simply remove it
+            if re.match(r"[!?\.,;]", word[-1]):
+                word = word[:-1]
+        
         # If it exists in dictionary, increment count
         if word in FOUNDWORDS:
             FOUNDWORDS[word] = FOUNDWORDS[word] + 1
