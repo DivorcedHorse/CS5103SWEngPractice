@@ -35,6 +35,14 @@ class TestCheckFiles(unittest.TestCase):
         main.readFile(testCase003)
         self.assertEqual(main.FOUNDWORDS, {})
         self.assertEqual(len(main.FOUNDWORDS), 0)
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        main.printWords()
+        sys.stdout = sys.__stdout__
+        output = capturedOutput.getvalue()
+        output = output.rstrip()
+        expectedString = "String and Words found no valid words in the given file."
+        self.assertEqual(expectedString, output)
 
     # Given a simple text file, check to see if file is
     # properly read and words are counted.

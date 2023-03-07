@@ -17,7 +17,8 @@ class TestPrintWords(unittest.TestCase):
     def tearDown(self):
         main.FOUNDWORDS = {}
         
-     # Given an empty dictionary, prints nothing
+     # Given an empty dictionary, prints that no valid
+     # words were found.
     def test_validatePrintNone(self):
         main.FOUNDWORDS = {}
         capturedOutput = io.StringIO()
@@ -26,8 +27,8 @@ class TestPrintWords(unittest.TestCase):
         sys.stdout = sys.__stdout__
         output = capturedOutput.getvalue()
         output = output.rstrip()
-        self.assertEqual(output, '')
-        self.assertEqual(len(output), 0)
+        self.assertEqual(output, 'String and Words found no valid words in the given file.')
+        self.assertEqual(len(output), 56)
         self.assertNotEqual(len(output), 1)
         self.assertNotEqual(output, "bad string")
 

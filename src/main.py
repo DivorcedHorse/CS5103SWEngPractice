@@ -15,6 +15,10 @@ FOUNDWORDS = {}     # Stores unique words found
 #   Prints all the words in FOUNDWORDS with their 
 #   respective count values
 def printWords():
+    if len(FOUNDWORDS) == 0:
+        print("String and Words found no valid words in the given file.")
+        return 
+    
     for word in FOUNDWORDS.keys():
         print("\"" + word + "\"" + " has a word count of " + str(FOUNDWORDS[word]))
         
