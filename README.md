@@ -33,7 +33,7 @@
     - Test cases can also be found in the *src* directory to validate the requirements of the 
         **String and Words** application.
 
-    - Test cases can be ran by navigating to the *src* folder, and running the command seen down below: <br>
+    - Test cases can be ran by navigating to the *src* folder, and running one of the following commands seen down below: <br>
 
         - To run a single test file:
             ```
