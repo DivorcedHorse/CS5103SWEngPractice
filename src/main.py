@@ -1,8 +1,9 @@
 # main.py by Daniel Tellez
 # Purpose:
 #   The purpose of this application will be to perform various 
-#   word statistics of a given document.  The initial requirement 
-#   will be to count the frequency of each unique word.
+#   word statistics on a given document/file.  The initial requirement 
+#   will be to count the frequency of each unique word and print the 
+#   results to the terminal.
 
 # Necessary imports
 import sys
@@ -65,8 +66,8 @@ def countUniqueWords(words):
             FOUNDWORDS[word] = 1
             
 # readFile
-#   Given a file, simply reads the contents and prints the contents
-#   of the file.
+#   Given a file/document, simply reads the contents of the file
+#   invoking helper functions to count unique and valid words.
 def readFile(file):
     try:
         with open(file, 'r') as file:

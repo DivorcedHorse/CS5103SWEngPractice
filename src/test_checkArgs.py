@@ -1,6 +1,7 @@
 # test_checkArgs.py
 # Purpose:
-#   Ensures that only a single file will allow application to run.
+#   Ensures that only a single file/document will allow the String and Words
+#   system to execute.  
 
 import unittest
 from main import checkArguments

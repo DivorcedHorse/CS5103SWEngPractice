@@ -1,9 +1,9 @@
 # test_checkFiles.py
 # Purpose:
-#   Ensures passing in different unique files will execute the entire
-#   program and work as expected.  Each file consists of different 
+#   Ensures passing in different unique files/documents will execute the entire
+#   program and work as expected.  Each file/document consists of different 
 #   words (valid and invalid).  This suite will check if count, validate,
-#   and print works as intended.
+#   and print work as intended.
 
 import unittest
 import main

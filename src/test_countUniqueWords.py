@@ -1,6 +1,8 @@
 # test_countUniqueWords.py
 # Purpose:
-#   Ensures that counting and prints words peform as expected.
+#   Ensures that the countUniqueWords function properly
+#   counts unique words and increases count frequency
+#   of identical words.
 
 import unittest
 import main
@@ -53,6 +55,15 @@ class TestCountUniqueWords(unittest.TestCase):
         self.assertEqual(len(main.FOUNDWORDS), 3)
         self.assertNotEqual(len(main.FOUNDWORDS), 1)
         self.assertNotEqual(main.FOUNDWORDS, {'word': 5})
+        
+    # Given an array of invalid words (numbers, operators,etc), 
+    # check to see if none are counted and FOUNDWORDS is blank.
+    def test_countInvalidWords(self):
+        words = ["44", "b@dWord", "!", "@", "!test!", "."]
+        main.countUniqueWords(words)
+        self.assertDictEqual(main.FOUNDWORDS, {})
+        self.assertEqual(len(main.FOUNDWORDS), 0)
+        self.assertNotEqual(len(main.FOUNDWORDS), 5)
         
 if __name__ == '__main__':
     unittest.main()
