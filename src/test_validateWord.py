@@ -66,12 +66,14 @@ class TestValidateWord(unittest.TestCase):
         validWord3 = "exquisite."
         validWord4 = "a,"
         validWord5 = "awesome;"
+        validWord6 = "another:"
         self.assertEqual(main.validateWord(validWord1), True)
         self.assertEqual(main.validateWord(validWord2), True)
         self.assertEqual(main.validateWord(validWord3), True)
         self.assertEqual(main.validateWord(validWord4), True)
         self.assertEqual(main.validateWord(validWord5), True)
-        self.assertNotEqual(main.validateWord(validWord5), False)
+        self.assertEqual(main.validateWord(validWord6), True)
+        self.assertNotEqual(main.validateWord(validWord6), False)
         
     # Given a word with only valid characters but with many symbols
     # at the end, validateword should return false.

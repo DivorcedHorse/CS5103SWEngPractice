@@ -35,7 +35,7 @@ def validateWord(word):
             if len(word) == 1:
                 return False
             # Valid operator at the end, return True
-            if (index == len(word)-1) and re.match(r"[!?\.,;]", char):
+            if (index == len(word)-1) and re.match(r"[!?\.,;:]", char):
                 return True
             return False
     # Valid word, return True
