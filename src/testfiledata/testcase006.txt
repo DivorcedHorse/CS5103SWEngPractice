@@ -1,6 +1,19 @@
 words            with                spaces
-     tabs   and tabs and        tabs     and 
-             newlines    newlines
+     tabs   and   
+      
+      
+       
+         tabs and       
+        
+                
+                        
+                        
+                         tabs     and 
+             newlines   
+              
+              
+               
+                         newlines
 
 
              

@@ -55,7 +55,7 @@ def countUniqueWords(words):
             continue
         else:
             # if valid word with valid operator at end, simply remove it
-            if re.match(r"[!?\.,;]", word[-1]):
+            if re.match(r"[!?\.,;:]", word[-1]):
                 word = word[:-1]
         
         # If it exists in dictionary, increment count

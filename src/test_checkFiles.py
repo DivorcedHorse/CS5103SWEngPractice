@@ -17,6 +17,7 @@ testCase004 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase004.
 testCase005 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase005.txt')
 testCase006 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase006.txt')
 testCase007 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase007.txt')
+testCase008 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase008.txt')
 
 class TestCheckFiles(unittest.TestCase):
     # clear the global FOUNDWORDS so tests do not
@@ -100,6 +101,25 @@ class TestCheckFiles(unittest.TestCase):
         output = output.rstrip()
         expectedString = "\"good\" has a word count of 2"
         expectedString += "\n\"test\" has a word count of 1"
+        self.assertEqual(expectedString, output)
+        self.assertNotEqual("", expectedString)
+        
+    # Given a text file the same word ending with a valid symbol
+    # checks to see if counted properly and if symbol is stripped
+    # off.
+    def test_fileWithValidWordsAndSymbols(self):
+        main.readFile(testCase008)
+        self.assertNotEqual(main.FOUNDWORDS, {})
+        self.assertEqual(main.FOUNDWORDS, {'word': 6})
+        self.assertEqual(len(main.FOUNDWORDS), 1)
+        self.assertNotEqual(len(main.FOUNDWORDS), 0)
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
+        main.printWords()
+        sys.stdout = sys.__stdout__
+        output = capturedOutput.getvalue()
+        output = output.rstrip()
+        expectedString = "\"word\" has a word count of 6"
         self.assertEqual(expectedString, output)
         self.assertNotEqual("", expectedString)
 
