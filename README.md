@@ -9,6 +9,14 @@
     The goal for **String and Words** is to create a simple application that will
     `perform various word statistics of a given document (as a string)`.  This includes, but may not be limited to, counting the `frequency of each unique word` and supporting `combinations of space, tab, and newline characters as seperators`.
 
+    #### **NEW REQUIREMENT CHANGE**
+    As of Monday, March 13th, new requirements were introduced to the **String and Words** system.  Two new features were introduced to the system that will be implemented.  The two features includes:
+
+    1. Counting the number of lines (LineCount)
+    2. Counting the number of characters (CharCount)
+
+    The following new features will be thoroughly specified to make requirements clear and help define the implementation of the features.  New test cases will also be created to ensure the validity and correctness of said features.
+
 3. ### **Project Implementation:**
     I will implement **String and Words** using Python 3.  This includes creating the source code and test files in Python.<br><br>
     I will also utilize GitHub as my Version Control System (VCS) to keep track of all my changes using separate branches.
