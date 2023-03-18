@@ -11,6 +11,8 @@ import re
 
 # GLOBALS
 FOUNDWORDS = {}     # Stores unique words found
+TOTAL_CHARACTER_COUNTER = 0 # Stores the count of the total number of characters in the file
+TOTAL_LINE_COUNTER = 0 # Stores the total count of lines in the file
 
 # printWords
 #   Prints all the words in FOUNDWORDS with their 
@@ -46,9 +48,12 @@ def validateWord(word):
 #   and keeps counts of new/old words 
 def countUniqueWords(words):
     global FOUNDWORDS
+    global TOTAL_CHARACTER_COUNTER
     
     # Iterate through all words in list
-    for word in words:        
+    for word in words:
+        # count the characters for each word to add to total
+        charWordCounter(word)
         
         # invoke validateWord to see if a good word or not
         if not validateWord(word):
@@ -64,15 +69,41 @@ def countUniqueWords(words):
         # First time seeing word, add it into dictionary and set value to 1
         else:
             FOUNDWORDS[word] = 1
-            
+
+# charWordCounter
+    # Given a single word, regardless if valid or not,
+    # counts the characters and its it to the total 
+    # character counter.
+def charWordCounter(word):
+    global TOTAL_CHARACTER_COUNTER
+    
+    charCounter = len(word)
+    TOTAL_CHARACTER_COUNTER = TOTAL_CHARACTER_COUNTER + charCounter
+    
+# printCharacterCount
+    # Simply prints the total number of characters
+    # that were counted in the given file.
+def printCharacterCount():
+    print("Total number of characters counted in document: " + str(TOTAL_CHARACTER_COUNTER))
+    
+# printCharacterCount
+    # Simply prints the total number of lines
+    # that were counted in the given file.
+def printLineCount():
+    print("Total number of lines counted in document: " + str(TOTAL_LINE_COUNTER))
+
 # readFile
 #   Given a file/document, simply reads the contents of the file
 #   invoking helper functions to count unique and valid words.
 def readFile(file):
+    global TOTAL_LINE_COUNTER
     try:
         with open(file, 'r') as file:
             # Iterate through every single line in the file
             for line in file:
+                # increase the count
+                TOTAL_LINE_COUNTER = TOTAL_LINE_COUNTER + 1
+                
                 # strip end of line for newline
                 line = line.rstrip()
                 
@@ -103,6 +134,8 @@ def main():
     file = sys.argv[1]
     readFile(file)
     printWords()
+    printCharacterCount()
+    printLineCount()
     
 # Invoke Main Function
 if __name__ == "__main__":
