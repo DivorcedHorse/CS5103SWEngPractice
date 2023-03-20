@@ -51,7 +51,7 @@ class TestCharCount(unittest.TestCase):
             self.assertEqual(main.TOTAL_CHARACTER_COUNTER, totalLenghs[index])
             
     # Given symbols, ensures character counter properly
-    # counts them
+    # counts them.
     def test_symbolCharacterCount(self):
         symbols = ["?", "!", "/", ".", "@", "#"]
         totalLenghs = [1, 2, 3, 4, 5, 6]
@@ -67,13 +67,13 @@ class TestCharCount(unittest.TestCase):
         self.assertEqual(main.TOTAL_CHARACTER_COUNTER, expectedTotalLength)
         
     # Given numbers (as strings), ensures character counter properly
-    # counts them
+    # counts them.
     def test_numberCharacterCount(self):
         for number in range(0, 9):
             main.charWordCounter(str(number))
             self.assertEqual(main.TOTAL_CHARACTER_COUNTER, number+1)
             
-    # Ensures printing of characters is correct
+    # Ensures printing of total characters is correct
     def test_printCharacterCount(self):
         main.readFile(testCase004)
         expectedString = "Total number of characters counted in document: 41"
@@ -85,8 +85,8 @@ class TestCharCount(unittest.TestCase):
         output = output.rstrip()
         self.assertEqual(output, expectedString)
         
-    # Ensures that no spaces, tabs, or newline
-    # in a file are counted
+    # Ensures that no spaces, tabs, or newline characters
+    # in a file are counted to the total
     def test_spaceTabCount(self):
         main.readFile(testCase009)
         self.assertEqual(main.TOTAL_CHARACTER_COUNTER, 0)

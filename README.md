@@ -21,6 +21,9 @@
     I will implement **String and Words** using Python 3.  This includes creating the source code and test files in Python.<br><br>
     I will also utilize GitHub as my Version Control System (VCS) to keep track of all my changes using separate branches.
 
+    - Branch *requirement1* will contain the initial implementation of the **String and Words** system.  This will be the starting point of the system.
+    - Branch *requirement2* will contain the new features that will be provided later to the system.  The new features will be documented, tested, and implemented in the code.
+
 4. ### **Project Process and Documentation:**
     - GitHub will be used for keeping track of my code and changes related to it.
         - Unit tests/files will also be tracked here.
