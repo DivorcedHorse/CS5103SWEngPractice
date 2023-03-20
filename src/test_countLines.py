@@ -10,18 +10,18 @@ import os
 import io
 import sys
 
-
 testCase003 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase003.txt')
 testCase004 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase004.txt')
+testCase007 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase007.txt')
 testCase009 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase009.txt')
 
-class TestArguments(unittest.TestCase):
-    # clear the global FOUNDWORDS so tests do not
-    # interfere with one another
+class TestLineCount(unittest.TestCase):
+    # clear the line counter and words before
+    # each given test.
     def setUp(self):
         main.TOTAL_LINE_COUNTER = 0
         main.FOUNDWORDS = {}
-    
+        
     # Given an empty file, with no new lines, 
     # TOTAL_LINE_COUNTER should be 0 and not increment
     def test_countEmptyFileNoLines(self):
@@ -74,7 +74,13 @@ class TestArguments(unittest.TestCase):
         output = capturedOutput.getvalue()
         output = output.rstrip()
         self.assertEqual(output, expectedString)
-    
+        
+    # Given a file with valid and invalid words, 
+    # verify that line counter still counts properly
+    def test_lineCounterWithInvalidWords(self):
+        main.readFile(testCase007)
+        self.assertEqual(main.TOTAL_LINE_COUNTER, 4)
+        self.assertNotEqual(main.TOTAL_LINE_COUNTER, 0)
         
 if __name__ == '__main__':
     unittest.main()
