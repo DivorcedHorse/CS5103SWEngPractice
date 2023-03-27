@@ -14,6 +14,7 @@ testCase003 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase003.
 testCase004 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase004.txt')
 testCase007 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase007.txt')
 testCase009 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase009.txt')
+testCase010 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase010.txt')
 
 class TestLineCount(unittest.TestCase):
     # clear the line counter and words before
@@ -28,6 +29,13 @@ class TestLineCount(unittest.TestCase):
         main.readFile(testCase003)
         self.assertEqual(main.TOTAL_LINE_COUNTER, 0)
         self.assertNotEqual(main.TOTAL_LINE_COUNTER, 1)
+        
+    # Given a file with no new line characters but containing
+    # a line with characters in it, the line should still be counted.
+    def test_singleLineWithCharacters(self):
+        main.readFile(testCase010)
+        self.assertEqual(main.TOTAL_LINE_COUNTER, 1)
+        self.assertNotEqual(main.TOTAL_LINE_COUNTER, 0)
         
     # Given an empty file, with many blank new lines, 
     # TOTAL_LINE_COUNTER should be 15 as it counts
@@ -45,7 +53,7 @@ class TestLineCount(unittest.TestCase):
         main.readFile(testCase004)
         self.assertEqual(main.TOTAL_LINE_COUNTER, 10)
         self.assertNotEqual(main.TOTAL_LINE_COUNTER, 0)
-
+        
     # Test to ensure that if print works correctly
     # depending on the value of TOTAL_LINE_COUNTER
     def test_lineCounterPrint(self):
