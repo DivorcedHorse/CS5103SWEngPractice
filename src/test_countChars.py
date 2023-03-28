@@ -35,9 +35,18 @@ class TestCharCount(unittest.TestCase):
     
     # Given a single unique word, ensures that the length 
     # is properly counted and added to total of TOTAL_CHARACTER_COUNTER
-    def test_simpleCharWordCount(self):
+    def test_simpleValidCharWordCount(self):
         word = "character"
         expectedLength = 9
+        main.charWordCounter(word)
+        self.assertEqual(main.TOTAL_CHARACTER_COUNTER, expectedLength)
+        
+    # Given a single unique invalid word, ensures that the length 
+    # is properly counted and added to total of TOTAL_CHARACTER_COUNTER.  This
+    # is to ensure that all chars are being counted.
+    def test_simpleInValidCharWordCount(self):
+        word = "b@dw0rd!"
+        expectedLength = 8
         main.charWordCounter(word)
         self.assertEqual(main.TOTAL_CHARACTER_COUNTER, expectedLength)
         
@@ -54,10 +63,10 @@ class TestCharCount(unittest.TestCase):
     # counts them.
     def test_symbolCharacterCount(self):
         symbols = ["?", "!", "/", ".", "@", "#"]
-        totalLenghs = [1, 2, 3, 4, 5, 6]
+        totalLengths = [1, 2, 3, 4, 5, 6]
         for index, symbol in enumerate(symbols):
             main.charWordCounter(symbol)
-            self.assertEqual(main.TOTAL_CHARACTER_COUNTER, totalLenghs[index])
+            self.assertEqual(main.TOTAL_CHARACTER_COUNTER, totalLengths[index])
         
         # Given a string of symbols and characters, ensures char count is fine
         # does not count
@@ -72,7 +81,7 @@ class TestCharCount(unittest.TestCase):
         for number in range(0, 9):
             main.charWordCounter(str(number))
             self.assertEqual(main.TOTAL_CHARACTER_COUNTER, number+1)
-            
+                        
     # Ensures printing of total characters is correct
     # given a file of many valid and identical  words.
     def test_printCharacterCount(self):
