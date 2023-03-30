@@ -7,15 +7,22 @@ import unittest
 import main
 import io
 import sys
+import os
+
+testCase005 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase005.txt')
 
 class TestPrintWords(unittest.TestCase):
     # clear the global FOUNDWORDS so tests do not
     # interfere with one another
     def setUp(self):
         main.FOUNDWORDS = {}
+        main.TOTAL_CHARACTER_COUNTER = 0
+        main.TOTAL_LINE_COUNTER
         
     def tearDown(self):
         main.FOUNDWORDS = {}
+        main.TOTAL_CHARACTER_COUNTER = 0
+        main.TOTAL_LINE_COUNTER
         
      # Given an empty dictionary, prints that no valid
      # words were found.
@@ -66,6 +73,26 @@ class TestPrintWords(unittest.TestCase):
         self.assertNotEqual(output, "bad string")
         self.assertNotEqual(output, "")
         self.assertNotEqual(output, expectedString + ".")
+        
+    # running the entire system on a simple file, ensure the system
+    # prints the expected lines in order and correctly.
+    def test_allFinalPrints(self):
+        main.FOUNDWORDS = {}
+
+        main.readFile(testCase005)
+        expectedWordString = "\"Unique\" has a word count of 10\n"
+        expectedCountString = "Total number of characters counted in document: 60\n"
+        expectedLineString = "Total number of lines counted in document: 6"
+        expectedString = expectedWordString + expectedCountString + expectedLineString
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput 
+        main.printWords()
+        main.printCharacterCount()
+        main.printLineCount()        
+        sys.stdout = sys.__stdout__
+        output = capturedOutput.getvalue()
+        output = output.rstrip()
+        self.assertEqual(output, expectedString)
 
 if __name__ == '__main__':
     unittest.main()

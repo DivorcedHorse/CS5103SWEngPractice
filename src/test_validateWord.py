@@ -10,7 +10,13 @@ class TestValidateWord(unittest.TestCase):
     # clear the global FOUNDWORDS so tests do not
     # interfere with one another
     def setUp(self):
+        main.TOTAL_CHARACTER_COUNTER = 0
+        main.TOTAL_LINE_COUNTER = 0
         main.FOUNDWORDS = {}
+    def tearDown(self):
+        main.TOTAL_CHARACTER_COUNTER = 0
+        main.FOUNDWORDS = {}
+        main.TOTAL_LINE_COUNTER = 0
         
     # Given a number, validateWord 
     # returns false as not a valid word

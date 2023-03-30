@@ -20,8 +20,13 @@ class TestLineCount(unittest.TestCase):
     # clear the line counter and words before
     # each given test.
     def setUp(self):
+        main.TOTAL_CHARACTER_COUNTER = 0
         main.TOTAL_LINE_COUNTER = 0
         main.FOUNDWORDS = {}
+    def tearDown(self):
+        main.TOTAL_CHARACTER_COUNTER = 0
+        main.FOUNDWORDS = {}
+        main.TOTAL_LINE_COUNTER = 0
         
     # Given an empty file, with no new lines, 
     # TOTAL_LINE_COUNTER should be 0 and not increment

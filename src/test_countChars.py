@@ -21,10 +21,12 @@ class TestCharCount(unittest.TestCase):
     # so tests do not interfere with each other.
     def setUp(self):
         main.TOTAL_CHARACTER_COUNTER = 0
+        main.TOTAL_LINE_COUNTER = 0
         main.FOUNDWORDS = {}
     def tearDown(self):
         main.TOTAL_CHARACTER_COUNTER = 0
         main.FOUNDWORDS = {}
+        main.TOTAL_LINE_COUNTER = 0
     
     # Given an empty file, with no words or characters
     # TOTAL_CHARACTER_COUNTER should be 0 and not increment
