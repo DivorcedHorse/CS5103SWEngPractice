@@ -11,10 +11,13 @@ class TestCountUniqueWords(unittest.TestCase):
     # clear the global FOUNDWORDS so tests do not
     # interfere with one another
     def setUp(self):
+        main.TOTAL_CHARACTER_COUNTER = 0
+        main.TOTAL_LINE_COUNTER = 0
         main.FOUNDWORDS = {}
-        
     def tearDown(self):
+        main.TOTAL_CHARACTER_COUNTER = 0
         main.FOUNDWORDS = {}
+        main.TOTAL_LINE_COUNTER = 0
         
     # Given an empty array, check to see
     # if no words are counted.
