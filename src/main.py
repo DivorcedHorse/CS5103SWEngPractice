@@ -8,6 +8,7 @@
 # Necessary imports
 import sys
 import re
+import fileinput
 
 # GLOBALS
 FOUNDWORDS = {}     # Stores unique words found
@@ -29,6 +30,9 @@ def printWords():
 #   Given a word, checks to see if that word 
 #   will count as a valid word or not. 
 def validateWord(word):
+    if word == "":
+        return False
+    
     # Check to see if valid word if only containing letters
     for index, char in enumerate(word):
         # If a char is not in a-zA-Z, check to see if single operator
@@ -92,6 +96,87 @@ def printCharacterCount():
 def printLineCount():
     print("Total number of lines counted in document: " + str(TOTAL_LINE_COUNTER))
 
+# validWordsCheck
+    # Checks to see if there exists any valid words that was found
+    # in the given document.  If words found, returns True, otherwise
+    # false
+def validWordsCheck():
+    global FOUNDWORDS
+    if len(FOUNDWORDS) > 0:
+        return True
+    return False
+    
+# findWordInFile
+    # Checks to see if the word given by user is a valid word
+    # found in FOUNDWORDS dictionary.  This ensures that
+    # user is replacing a valid word found
+def findWordInFile(word):
+    try:
+        if FOUNDWORDS[word]:
+            return True
+    except:
+        print("Word does not exist in file.  Please Try Again.")
+        return False
+    
+# getReplacementWord
+    # Prompts the user to input their replacement word.  Checks
+    # to ensure that the word provided by the user is a valid word
+    # as well.
+def getReplacementWord():
+    replacementWord = 1
+    
+    while (replacementWord):
+        typedWord = input("\nPlease type in your replacement word: ")
+        
+        if validateWord(typedWord):
+            replacementWord = 0
+        else:
+            print("Invalid word provided, please try again.")
+            
+    return typedWord
+    
+    
+# getReplacedWord
+    # Prompts users if they would like to replace a word in the file
+    # User can skip if they would not like to.
+    # Invokes findWordInFile() to ensure word they would like to replace
+    # exists in the file.
+def getReplacedWord():
+    replacedWord = 1
+    
+    while (replacedWord):
+        selectedWord = input("\nPlease type the word you would like to replace (Press Enter to Skip): ")
+        
+        if selectedWord == "":
+            exit("No Words Replaced.  Exiting.")
+        else:
+            if findWordInFile(selectedWord):
+                replacedWord = 0
+    
+    return selectedWord
+
+# replaceWord
+    # Given the two words the user will be replacing with, creates a new
+    # file that will print out the same contents as the previous file
+    # but with the new word replacing old occurrances of the old word.
+def replaceWord(selectedWord, replacementWord, file):
+    
+    # Open original file and create new file with modified name    
+    with open(file) as infile, open(file + "_MODIFIED", 'w') as outfile:
+        # iterate through all lines in the file and grab the words
+        for line in infile:
+            words = line.split()
+            newLine = line
+            # for each word, check to see if they match word wanted to be replaced by user
+            # if it does, replace that occurance with new word, otherwise keep line the same
+            for word in words:
+                if re.search(r"^" + selectedWord + r"[!?\.,;:]{0,1}$", word):
+                    if re.match(r"[!?\.,;:]", word[-1]):
+                        newLine = re.sub(word, replacementWord+word[-1], newLine, count=1)
+                    else:
+                        newLine = re.sub(word, replacementWord, newLine, count=1)
+            outfile.write(newLine)
+
 # readFile
 #   Given a file/document, simply reads the contents of the file
 #   invoking helper functions to count unique and valid words.
@@ -133,9 +218,17 @@ def main():
     checkArguments(sys.argv[1:])
     file = sys.argv[1]
     readFile(file)
+    
+    # print statistics to user
     printWords()
     printCharacterCount()
     printLineCount()
+    
+    # ensure there exists words to be replaced
+    if (validWordsCheck()):
+        selectedWord = getReplacedWord()
+        replacementWord = getReplacementWord()
+        replaceWord(selectedWord, replacementWord, file)
     
 # Invoke Main Function
 if __name__ == "__main__":
