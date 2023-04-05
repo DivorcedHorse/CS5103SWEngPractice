@@ -17,12 +17,20 @@
 
     The following new features will be thoroughly specified to make requirements clear and help define the implementation of the features.  New test cases will also be created to ensure the validity and correctness of said features.
 
+    ### **FINAL REQUIREMENT CHANGE**
+    As of Tuesday, April 4th, the final requirement was revealed for the **String and Words** system.  The new features, replace word, will allow users to replace all occurrences of a given valid word from the specified file with a valid word of their choosing.
+
+    This new feature, as done with the first batch of new requirements, will be thoroughly specified and tested to ensure the functionality works as intended.
+
 3. ### **Project Implementation:**
     I will implement **String and Words** using Python 3.  This includes creating the source code and test files in Python.<br><br>
     I will also utilize GitHub as my Version Control System (VCS) to keep track of all my changes using separate branches.
 
     - Branch *requirement1* will contain the initial implementation of the **String and Words** system.  This will be the starting point of the system.
     - Branch *requirement2* will contain the new added features that were announced on Monday, March 13th.  The new features will be documented, tested, and implemented in the code.
+    - Branch *finalRequirement* will contain the final feature that was announced on Tuesday, April 4th.  The new feature will be documented, tested, and implemented in the code.
+
+    Once all branches have been completed with their respective features, they will be merged into the main branch indicating their completion.
 
 4. ### **Project Process and Documentation:**
     - GitHub will be used for keeping track of my code and changes related to it.
