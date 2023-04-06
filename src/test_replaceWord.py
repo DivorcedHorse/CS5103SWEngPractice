@@ -26,7 +26,6 @@ class TestLineCount(unittest.TestCase):
         main.FOUNDWORDS = {}
         main.TOTAL_LINE_COUNTER = 0
         
-        
     # Given a file with no words in the FOUNDWORDS dictionary,
     # ensures that validWordsCheck returns false so that 
     # user will not be prompted to replace a word
@@ -48,7 +47,7 @@ class TestLineCount(unittest.TestCase):
         main.readFile(testCase004)
         self.assertEqual(True, main.validWordsCheck())
 
-    # Given a word, checks to see if it exists in the 
+    # Given a word, checks to see if it exists in 
     # FOUNDWORDS.  If it does, return true, else returns false.
     def test_findValidWord(self):
         main.FOUNDWORDS["exist"] = 1
@@ -87,7 +86,6 @@ class TestLineCount(unittest.TestCase):
         # expext it to return exists
         self.assertEqual(main.getReplacedWord(), "exist")
         self.assertNotEqual(main.getReplacedWord(), "exists")        
-        
         
     # mocking input received from user, given words that does not exist
     # in FOUNDWORDS, ensures that loop is ran and user is asked multiple times 

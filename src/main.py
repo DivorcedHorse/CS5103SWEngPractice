@@ -134,8 +134,7 @@ def getReplacementWord():
             print("Invalid word provided, please try again.")
             
     return typedWord
-    
-    
+
 # getReplacedWord
     # Prompts users if they would like to replace a word in the file
     # User can skip if they would not like to.
