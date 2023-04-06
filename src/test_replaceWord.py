@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 testCase004 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase004.txt')
 testCase011 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase011.txt')
-
+testCase012 = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase012.txt')
 
 class TestLineCount(unittest.TestCase):
     # clear the line counter and words before
@@ -43,7 +43,10 @@ class TestLineCount(unittest.TestCase):
     def test_fileWithInvalidWords(self):
         main.readFile(testCase011)
         self.assertEqual(False, main.validWordsCheck())
-
+        
+        # check if found words return true
+        main.readFile(testCase004)
+        self.assertEqual(True, main.validWordsCheck())
 
     # Given a word, checks to see if it exists in the 
     # FOUNDWORDS.  If it does, return true, else returns false.
@@ -88,7 +91,7 @@ class TestLineCount(unittest.TestCase):
         
     # mocking input received from user, given words that does not exist
     # in FOUNDWORDS, ensures that loop is ran and user is asked multiple times 
-    # to input a valid word
+    # to input a valid word...valid word is returned
     @patch('main.input', create=True)
     def test_getInValidReplacedWord(self, input):
         main.FOUNDWORDS["exist"] = 1
@@ -194,6 +197,30 @@ class TestLineCount(unittest.TestCase):
         self.assertNotEqual(len(main.FOUNDWORDS), 0)
     
         os.remove(expectedPath)
+        
+    # Given a file with the same word multiple times, ensures that only the
+    # exact word (case-sensitive) is replaced and not all that match the same letters.
+    def test_replaceSingleCaseSensitiveWord(self):
+        wordToBeReplaced = "case"
+        replacementWord = "success"
+        
+        expectedPath = os.path.join(os.path.dirname(__file__), 'testfiledata/testcase012.txt_MODIFIED')
+        
+        main.replaceWord(wordToBeReplaced, replacementWord, testCase012)
+                
+        self.assertEqual(main.FOUNDWORDS, {})
+        main.readFile(expectedPath)
+        
+        self.assertIn("success", main.FOUNDWORDS.keys())
+        self.assertIn("CASE", main.FOUNDWORDS.keys())
+        self.assertIn("casE", main.FOUNDWORDS.keys())
+        self.assertIn("Case", main.FOUNDWORDS.keys())
+        self.assertNotIn("case", main.FOUNDWORDS.keys())
+        
+        self.assertEqual(len(main.FOUNDWORDS), 4)
+        self.assertNotEqual(len(main.FOUNDWORDS), 1)
+        os.remove(expectedPath)
+
 
 if __name__ == '__main__':
     unittest.main()
